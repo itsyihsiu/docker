@@ -1,0 +1,36 @@
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - ./data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: aaabbb
+      MYSQL_DATABASE: wpdb
+      MYSQL_USER: aaabbb
+      MYSQL_PASSWORD: aaabbb
+  
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - ./wp:/var/www/html
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: aaabbb
+      WORDPRESS_DB_PASSWORD: aaabbb
+      WORDPRESS_DB_NAME: wpdb
+
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin:latest
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: aaabbb 
