@@ -1,0 +1,25 @@
+docker run \
+    --name nginx \
+    --rm \
+    -d \
+    -p 80:80 \ 
+    -p 443:443 \
+    -v ./default:/etc/nginx/sites-available/default \
+    -v ./ssl:/etc/nginx/ssl \
+    -v ./www:/var/www/html \
+    -v mariadb_data:/var/lib/mysql \
+    yihsiuc/wordpress:1.0
+
+Dcw(bidBuV)FP!E63*
+
+docker run \
+    --name nginx \
+    --rm \
+    -it \
+    -p 80:80 \ 
+    -v ./default:/etc/nginx/sites-available/default \
+    -v ./ssl:/etc/nginx/ssl \
+    -v ./www:/var/www/html \
+    -v mariadb_data:/var/lib/mysql \
+    yihsiuc/wordpress:1.0 \
+    /bin/bash
